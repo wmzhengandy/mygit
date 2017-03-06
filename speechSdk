@@ -1,0 +1,5 @@
+OnlineRecognizerFactory.RecognizerType.VOICE_INPUT; 是否还需要保留；DictationWebSocketEventListener
+
+public void setLocationString(String clientName,String locStr) ,无用的clientName是否还需要保留；
+
+public void startTextSearch(String text, String location, SearchListener callback)  文本搜索是否还需要保留；
