@@ -1,5 +1,22 @@
-OnlineRecognizerFactory.RecognizerType.VOICE_INPUT; 是否还需要保留；DictationWebSocketEventListener
+
 
 public void setLocationString(String clientName,String locStr) ,无用的clientName是否还需要保留；
 
 public void startTextSearch(String text, String location, SearchListener callback)  文本搜索是否还需要保留；
+
+
+public enum RecognitionTaskType {
+    OFFLINE,
+    ONLINE,
+    MIX,
+    RECORD_ONLY,
+    CONTACT,
+    MULTI_KEYWORDS
+}
+RECORD_ONLY  是否还需要保留。
+
+
+Recognizer 类
+/*  modify ,online is do here ,offline need a new class to return currentRecognizer */
+离线类
+boolean waittast(recognizerparams,currentrecognitiontask);
