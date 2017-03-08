@@ -1,0 +1,81 @@
+共享存储
+SharedPreferences pref = mContext.getSharedPreferences(TAG, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        String id = pref.getString(ID_KEY, null);
+        editor.apply();//not care about return value
+        editor.commit();// care about value
+        
+        StringUtils.newGuid();//生成uid
+        
+Future,可以获取线程返回结果
+1、 Future + Callable
+ExecutorService executor = Executors.newCachedThreadPool();
+        Task task = new Task();
+        Future<Integer> result = executor.submit(task);
+        executor.shutdown();
+        try{
+        System.out.println("task运行结果"+result.get());
+        }
+        catch()
+        {
+        }
+        
+        class Task implements Callable<Integer>{
+    @Override
+    public Integer call() throws Exception {
+        System.out.println("子线程在进行计算");
+        Thread.sleep(3000);
+        int sum = 0;
+        for(int i=0;i<100;i++)
+            sum += i;
+        return sum;
+    }
+}
+
+2、Callable + futureTask
+
+//第一种方式
+        ExecutorService executor = Executors.newCachedThreadPool();
+        Task task = new Task();
+        FutureTask<Integer> futureTask = new FutureTask<Integer>(task);
+        executor.submit(futureTask);
+        executor.shutdown();
+         
+        //第二种方式，注意这种方式和第一种方式效果是类似的，只不过一个使用的是ExecutorService，一个使用的是Thread
+        /*Task task = new Task();
+        FutureTask<Integer> futureTask = new FutureTask<Integer>(task);
+        Thread thread = new Thread(futureTask);
+        thread.start();*/
+        
+        
+  public interface Callable<V> {
+    V call() throws Exception;
+  }
+  
+  ExecutorService 方法：
+  <T> Future<T> submit(Callable<T> task);
+<T> Future<T> submit(Runnable task, T result);
+Future<?> submit(Runnable task);
+
+Future 接口：
+public interface Future<V> {
+    boolean cancel(boolean mayInterruptIfRunning);
+    boolean isCancelled();
+    boolean isDone();
+    V get() throws InterruptedException, ExecutionException;
+    V get(long timeout, TimeUnit unit)
+        throws InterruptedException, ExecutionException, TimeoutException;
+}
+
+FutureTask 接口：
+
+public class FutureTask<V> implements RunnableFuture<V>
+public interface RunnableFuture<V> extends Runnable, Future<V> {
+    void run();
+}
+
+构造函数
+public FutureTask(Callable<V> callable) {
+}
+public FutureTask(Runnable runnable, V result) {
+}
