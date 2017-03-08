@@ -20,3 +20,12 @@ Recognizer 类
 /*  modify ,online is do here ,offline need a new class to return currentRecognizer */
 离线类
 boolean waittast(recognizerparams,currentrecognitiontask);
+
+MotoHotwordDetector 是否还留着；
+
+convertGCJToBaidu 是否还留着。 --------当前用的应该是高德地图。
+
+
+mOnebpxRequest.getVersionCode() 这里也涉及版本号，这里是否也需要同步进行修改；
+
+多次的广播消息目的是什么？仅仅是为了上传用户信息？
