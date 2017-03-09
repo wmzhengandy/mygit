@@ -13,8 +13,16 @@ public enum RecognitionTaskType {
     CONTACT,
     MULTI_KEYWORDS
 }
+
+public enum RecognizerType {
+        ASR,
+        VOICE_INPUT,
+        SEMANTIC,
+        ONEBOX,
+    }
 RECORD_ONLY  是否还需要保留。
 
+VOICE_INPUT是否需要保留
 
 Recognizer 类
 /*  modify ,online is do here ,offline need a new class to return currentRecognizer */
