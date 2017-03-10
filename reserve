@@ -1,0 +1,33 @@
+/*
+    *//* 测试onvlume 功能 *//*
+
+    public synchronized boolean startVolumeRecognizer(String clientName){
+        synchronized (mRecognizerParams){
+            RecognizerParams recognizerParams = new RecognizerParams(mRecognizerParams);
+            recognizerParams.mInputType = RecognizerParams.InputType.Data;
+            return testAsrRecognizer(clientName);
+        }
+    }
+
+    *//* 构造语音数据，将语音inputstream 转化为 BlockingQueue<byte[]> 格式 *//*
+    public synchronized boolean testAsrRecognizer(String clientName)
+    {
+        BlockingQueue<byte[]> speechQueue = new ArrayBlockingQueue<byte[]>(655350);
+        byte [] mybytes = new byte[256000];
+        //将inputstream 转化为blockingqueue格式
+        MicrophoneInputStream microphoneInputStream = new MicrophoneInputStream(MicrophoneInputStream.DEFAULT_SAMPLING_RATE, MicrophoneInputStream.DEFAULT_BUFFER_SIZE);
+        try
+        {
+            microphoneInputStream.read(mybytes);
+        }
+        catch (IOException e)
+        {
+            Dbg.e("mytag",e.toString());
+        }
+        finally {
+            microphoneInputStream.close();
+        }
+        speechQueue.offer(mybytes);
+
+        return startAsrRecognizerWithQueue(clientName, speechQueue);
+    }*/

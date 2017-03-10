@@ -1,0 +1,42 @@
+volatile
+并发编程：1、原子性
+2、可见性（主存刷新）
+　volatile，另外，通过synchronized和Lock也能够保证可见性，
+ synchronized和Lock能保证同一时刻只有一个线程获取锁然后执行同步代码，并且在释放锁之前会将对变量的修改刷新到主存当中
+3、有序性（防止不正确的优化）
+
+//线程1:
+context = loadContext();   //语句1
+inited = true;             //语句2
+ 
+//线程2:
+while(!inited ){
+  sleep()
+}
+doSomethingwithconfig(context);
+语句1和语句2进行了重排序，进行优化就会导致问题
+
+　一旦一个共享变量（类的成员变量、类的静态成员变量）被volatile修饰之后，那么就具备了两层语义：
+
+　　1）保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。
+
+　　2）禁止进行指令重排序。
+  
+//线程1
+boolean stop = false;
+while(!stop){
+    doSomething();
+}
+ 
+//线程2
+stop = true;
+
+volatile本身并不保证原子性，如自增操作，如果需要保证，请使用同步或者加锁，或者采用AtomicInteger：
+
+
+
+volatile关键字禁止指令重排序有两层意思：
+
+　　1）当程序执行到volatile变量的读操作或者写操作时，在其前面的操作的更改肯定全部已经进行，且结果已经对后面的操作可见；在其后面的操作肯定还没有进行；
+
+　　2）在进行指令优化时，不能将在对volatile变量访问的语句放在其后面执行，也不能把volatile变量后面的语句放到其前面执行。

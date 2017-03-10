@@ -1,0 +1,48 @@
+
+
+public void setLocationString(String clientName,String locStr) ,无用的clientName是否还需要保留；
+
+／／public void startTextSearch(String text, String location, SearchListener callback)  文本搜索是否还需要保留；
+
+
+public enum RecognitionTaskType {
+    OFFLINE,
+    ONLINE,
+    MIX,
+    RECORD_ONLY,
+    CONTACT,
+    MULTI_KEYWORDS
+}
+
+public enum RecognizerType {
+        ASR,
+        VOICE_INPUT,
+        SEMANTIC,
+        ONEBOX,
+    }
+RECORD_ONLY  是否还需要保留。
+
+VOICE_INPUT是否需要保留
+
+Recognizer 类
+/*  modify ,online is do here ,offline need a new class to return currentRecognizer */
+离线类
+boolean waittask(recognizerparams,currentrecognitiontask);
+
+MotoHotwordDetector 是否还留着；/***已经删除****/
+
+
+
+convertGCJToBaidu 是否还留着。 --------当前用的应该是高德地图。
+
+
+／／mOnebpxRequest.getVersionCode() 这里也涉及版本号，这里是否也需要同步进行修改；
+
+／／多次的广播消息目的是什么？当前未实现。
+广播类消息是否可以删除，notify 函数是否可以删除
+
+
+setQaControlParam 函数是否还需要保留，当前函数实现不合理。
+
+当前只支持中国大陆，是否可以将. setAppKey 这一系列函数进行修改和删除。setNewClient
+
